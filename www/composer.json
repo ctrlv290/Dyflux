@@ -1,0 +1,10 @@
+{
+    "require": {
+        "php" : "^7.2",
+        "ext-pdo" : "*",
+        "ext-pdo_pgsql" : "*",
+        "phpoffice/phpspreadsheet": "^1.4",
+        "monolog/monolog": "^1.23",
+        "phpmailer/phpmailer": "^6.0"
+    }
+}

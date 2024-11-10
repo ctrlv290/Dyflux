@@ -1,0 +1,30 @@
+<?php
+/**
+ * User: woox
+ * Date: 2018-11-01
+ * Desc: 매칭 정보 관리 관련 Process
+ */
+
+//Page Info
+$pageMenuIdx = 66;
+//Init
+$GL_JsonHeader = true;
+include_once "../_init_.php";
+
+$response = array();
+$response["result"] = false;
+$response["msg"] = "";
+
+$C_Product = new Product();
+
+$mode                            = $_POST["mode"];
+$matching_info_idx               = $_POST["matching_info_idx"];
+
+if($mode == "product_matching_info_delete_one") {
+
+	$rst = $C_Product -> deleteProductMatchingInfo($matching_info_idx);
+	$response["result"] = true;
+}
+
+echo json_encode($response, true);
+?>

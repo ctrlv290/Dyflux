@@ -1,0 +1,137 @@
+<?php
+/**
+ * User: woox
+ * Date: 2018-11-01
+ * Desc: 입고내역 페이지
+ */
+//Page Info
+$pageMenuIdx = 302;
+//Init
+include_once "../_init_.php";
+
+session_cache_limiter('private-no-expire');
+
+$C_Stock = new Stock();
+$C_Product = new Product();
+
+$product_option_idx = $_GET["product_option_idx"];
+$confirm_date = $_GET["confirm_date"];
+$stock_unit_price = $_GET["stock_unit_price"];
+$stock_kind = $_GET["stock_kind"];
+
+$_view = $C_Product->getProductOptionDataDetail($product_option_idx);
+//$is_proc_n_count = $C_Stock -> getStockNonProcCountByDaily($product_option_idx,$confirm_date,$stock_unit_price);
+
+if(!$_view){
+    put_msg_and_close("존재하지 않는 상품입니다.");
+    exit;
+}else{
+    extract($_view);
+}
+
+?>
+
+<?php include_once DY_INCLUDE_PATH . "/_include_top_popup.php"; ?>
+<?php include_once DY_INCLUDE_PATH . "/_include_header.php"; ?>
+<div class="container popup">
+	<?php include_once DY_INCLUDE_PATH . "/_include_main_nav.php"; ?>
+	<div class="content write_page">
+		<div class="content_wrap">
+				<input type="hidden" name="product_option_idx" id="product_option_idx" value="<?php echo $product_option_idx?>" />
+                <input type="hidden" name="confirm_date" id="confirm_date" value="<?php echo $confirm_date?>" />
+				<input type="hidden" name="stock_unit_price" id="stock_unit_price" value="<?php echo $stock_unit_price?>" />
+                <input type="hidden" name="stock_kind" id="stock_kind" value="<?php echo $stock_kind?>" />
+				<div class="tb_wrap">
+					<p class="sub_tit2">상품정보</p>
+					<table class="no_border">
+						<tr>
+							<td>
+								<table>
+									<colgroup>
+										<col width="150">
+										<col width="*">
+									</colgroup>
+									<tbody>
+                                    <tr>
+                                        <th>처리일자</th>
+                                        <td class="text_left">
+                                            <?=$confirm_date?>
+                                        </td>
+                                    </tr>
+									<tr>
+										<th>상품코드</th>
+										<td class="text_left">
+											<?=$product_idx?>
+										</td>
+									</tr>
+									<tr>
+										<th>공급처</th>
+										<td class="text_left">
+											<?=$supplier_name?>
+										</td>
+									</tr>
+									<tr>
+										<th>상품옵션코드</th>
+										<td class="text_left">
+											<?=$product_option_idx?>
+										</td>
+									</tr>
+									<tr>
+										<th>상품명</th>
+										<td class="text_left">
+											<?=$product_name?>
+										</td>
+									</tr>
+									<tr>
+										<th>옵션</th>
+										<td class="text_left">
+											<?=$product_option_name?>
+										</td>
+									</tr>
+									<tr>
+										<th>원가(매입가)</th>
+										<td class="text_left">
+											<?=number_format($stock_unit_price);?> 원
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="tb_wrap">
+                    <?php
+                    if($stock_kind == "IN") {
+                    ?>
+                        <p class="sub_tit2" > 입고내역 </p>
+                        <?php
+                    } elseif($stock_kind == "OUT") {
+                    ?>
+                        <p class="sub_tit2" > 출고내역 </p>
+                    <?php
+                    }
+                    ?>
+					<div class="tb_wrap grid_tb">
+						<table id="grid_list">
+						</table>
+					</div>
+				</div>
+				<div class="btn_set">
+					<div class="center">
+						<a href="javascript:self.close();" class="large_btn red_btn">닫기</a>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+<script src="/js/main.js"></script>
+<script src="/js/String.js"></script>
+<script src="/js/FormCheck.js"></script>
+<script src="/js/page/stock.product.js?v=191213"></script>
+<script src="/js/fileupload.js"></script>
+<script>
+	window.name = 'stock_daily_detail_pop';
+    StockProduct.StockDailyDetailInit();
+</script>
+<?php include_once DY_INCLUDE_PATH . "/_include_bottom.php"; ?>

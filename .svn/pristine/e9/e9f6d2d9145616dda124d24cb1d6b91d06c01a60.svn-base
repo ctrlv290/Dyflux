@@ -1,0 +1,32 @@
+<?php
+header('Content-Type: text/html; charset=UTF-8');
+
+session_start();
+error_reporting(E_ALL);
+//ini_set("display_errors", 1);
+
+	//Mail Send!!
+	$fromName = "SOLIDWORKS";
+	$fromEmail = "info@solidworksinnovationday.co.k";
+	$toName = "수신인";
+	$toEmail = "styler98@nate.com";
+	$mailSubject = "[SOLIDWORKS Innovation Day 2018] 테스트 메일";
+
+	$mailForm = file_get_contents('email.html');
+	//$mailForm = iconv('euc-kr', 'utf-8', $mailForm);
+	$mailContents = $mailForm;
+
+	echo $mailContents;
+
+	$charset = "UTF-8";
+
+	$encoded_subject	=	"=?".$charset."?B?".base64_encode($mailSubject)."?=\n"; 
+	$to					=	"\"=?".$charset."?B?".base64_encode($toName)."?=\" <".$toEmail.">" ; 
+	$from				=	"\"=?".$charset."?B?".base64_encode($fromName)."?=\" <".$fromEmail.">" ; 
+	$headers			=	"MIME-Version: 1.0\n". 
+							"Content-Type: text/html; charset=".$charset."; format=flowed\n". 
+							"From: ".$from."\n". 
+							"Content-Transfer-Encoding: 8bit\n"; 
+
+	$mail = mail($to ,$encoded_subject ,$mailContents ,$headers ); 
+?>

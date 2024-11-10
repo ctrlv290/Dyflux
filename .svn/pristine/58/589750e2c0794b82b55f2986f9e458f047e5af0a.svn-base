@@ -1,0 +1,1 @@
+*/5 * * * * php /home/dy/_CRON/sms_result_update.php > /dev/null 2>&1

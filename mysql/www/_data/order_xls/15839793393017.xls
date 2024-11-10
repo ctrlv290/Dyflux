@@ -1,0 +1,615 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>ysh</LastAuthor>
+  <LastSaved>2020-03-11T06:40:10Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <WorkbookGuid dt:dt="string">d18d2743-1bd6-4626-9c35-1ebe5c170124</WorkbookGuid>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>12390</WindowHeight>
+  <WindowWidth>28800</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="맑은 고딕" x:CharSet="129" x:Family="Modern" ss:Size="11"
+    ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <NumberFormat ss:Format="0_);[Red]\(0\)"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="굴림" x:CharSet="129" x:Family="Modern" ss:Size="12"
+    ss:Color="#000000" ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font ss:FontName="굴림" x:CharSet="129" x:Family="Modern" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="굴림" x:CharSet="129" x:Family="Modern" ss:Size="9"
+    ss:Color="#000000" ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="굴림" x:CharSet="129" x:Family="Modern" ss:Size="9"
+    ss:Color="#000000" ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat ss:Format="0_);[Red]\(0\)"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="굴림" x:CharSet="129" x:Family="Modern" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s70">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="굴림" x:CharSet="129" x:Family="Modern" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="굴림" x:CharSet="129" x:Family="Modern" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="0_);[Red]\(0\)"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <Font ss:FontName="굴림" x:CharSet="129" x:Family="Modern" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s73">
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s74">
+   <NumberFormat ss:Format="0"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="50" ss:ExpandedRowCount="17" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="16.5">
+   <Column ss:Width="39.75" ss:Span="1"/>
+   <Column ss:Index="3" ss:Width="69.75"/>
+   <Column ss:Width="99.75"/>
+   <Column ss:Width="69.75"/>
+   <Column ss:Width="95.25" ss:Span="1"/>
+   <Column ss:Index="8" ss:Width="129.75" ss:Span="1"/>
+   <Column ss:Index="10" ss:Width="200.25"/>
+   <Column ss:Width="80.25"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="150"/>
+   <Column ss:Width="50.25"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="50.25"/>
+   <Column ss:Width="80.25"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="69.75"/>
+   <Column ss:Width="99.75"/>
+   <Column ss:Width="50.25"/>
+   <Column ss:Width="99.75"/>
+   <Column ss:Width="80.25" ss:Span="2"/>
+   <Column ss:Index="26" ss:Width="120" ss:Span="1"/>
+   <Column ss:Index="28" ss:Width="69.75"/>
+   <Column ss:Width="120" ss:Span="1"/>
+   <Column ss:Index="31" ss:Width="150"/>
+   <Column ss:Width="120" ss:Span="1"/>
+   <Column ss:Index="34" ss:Width="200.25"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="80.25"/>
+   <Column ss:Width="120"/>
+   <Column ss:StyleID="s62" ss:Width="99.75"/>
+   <Column ss:StyleID="s62" ss:Width="110.25" ss:Span="1"/>
+   <Column ss:Index="41" ss:Width="135"/>
+   <Column ss:Width="80.25"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="120" ss:Span="1"/>
+   <Column ss:Index="47" ss:Width="140.25"/>
+   <Column ss:Width="110.25" ss:Span="2"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="49" ss:StyleID="s64"><Data ss:Type="String">제목 : 직송출고관리</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="49" ss:StyleID="s66"><Data ss:Type="String"> 협력사코드/명 : 107543/(주) 덕윤 ,  2차협력사코드/명 : 전체 ,  상품코드/명 : 전체 ,  대상 : 출고 , 기간 : 2020/03/03 ~ 2020/03/10,    출력일시 : 2020/03/10 09:49:03,    출력자 : (주) 덕윤_Manager</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s67"><Data ss:Type="String">No</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">확인</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">주문구분</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">소싱매체</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">진행단계</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">주문승인일/&#10;교환접수일</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">출고준수일</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">출하지시일</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">출하지시시간</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">주문번호</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">고객명</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">배송사</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">운송장번호</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">출고연장</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">출고연장요청일</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">재고품절</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">상품코드</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">상품명</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">속성코드</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">속성상세</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">수량</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">모델번호</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">상품구분</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">인수자</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">실인수자</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">전화1</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">전화2</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">우편번호</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">주소</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">주소</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">배송메시지</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">고객번호</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">고객요청취소</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">고객요청내용</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">MD명</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">반값장터여부</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">배송비 고객부담여부</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">판매가</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">매입가(VAT별도)</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">정산예정금</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">본품진행상태</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">본품코드</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">본품상품명</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">2차협력사코드</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">2차협력사명</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">고객지정일</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">지정일 참고</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">금액(부가세포함)</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">금액(부가세미포함)</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">금액(부가세)</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s69"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">주문</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">쇼핑몰</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">출하지시</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/09</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/11</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10 09:48</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">20200308056561-001-001-001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">장용숙</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">16185085</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">NEW 아쿠아픽 구강세정기 AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">일반</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">장용숙</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1168-4347</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1168-4347</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">03303</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">서울특별시 은평구 진관4로 77, 702동 601호(진관동, 은평뉴타운상림마을)</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">서울특별시 은평구 진관동 6 은평뉴타운상림마을 702동 601호</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">201805-440444</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">D가전(정찬희)</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">106000</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">64564</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">71020</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">95400</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">86727</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">8673</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">주문</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">쇼핑몰</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">출하지시</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/09</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/11</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10 09:48</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">20200309342968-001-001-001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">윤명옥</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">16185085</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">NEW 아쿠아픽 구강세정기 AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">일반</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">윤명옥</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1162-7575</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1162-7575</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">480934</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">경기 의정부시 신곡1동 신동아파밀리에아파트 104동401호</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">201505-849008</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">D가전(정찬희)</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">106000</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">64564</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">71020</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">95400</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">86727</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">8673</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s69"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">주문</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">쇼핑몰</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">출하지시</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/09</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/11</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10 09:48</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">20200309354980-001-001-001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">남현우</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">16185085</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">NEW 아쿠아픽 구강세정기 AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">일반</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">남현우</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1163-1872</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1163-1872</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">122020</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">서울 은평구 녹번동 131-14  601호</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">201510-849230</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">D가전(정찬희)</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">106000</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">64564</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">71020</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">95400</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">86727</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">8673</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s69"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">주문</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">쇼핑몰</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">출하지시</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/09</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/11</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10 09:48</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">20200309425028-001-001-001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">강영도</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">16185085</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">NEW 아쿠아픽 구강세정기 AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">일반</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">강영도</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1166-1239</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1166-1239</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">134884</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">서울 강동구 성내1동 421-26번지 501호</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">201404-504407</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">D가전(정찬희)</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">106000</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">64564</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">71020</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">91400</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">83091</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">8309</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s69"><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">주문</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">쇼핑몰</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">출하지시</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/09</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/11</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10 09:48</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">20200309452790-001-001-001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">김신환</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">16185085</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">NEW 아쿠아픽 구강세정기 AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">일반</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">김신환</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1167-7646</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1167-7646</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">451741</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">경기 평택시 고덕면 궁리 태평아파트 301동1205호</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">부재시현관앞부탁드립니다.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">201510-569649</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">D가전(정찬희)</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">106000</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">64564</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">71020</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">95400</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">86727</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">8673</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s69"><Data ss:Type="String">6</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">주문</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">쇼핑몰</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">출하지시</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/12</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">2020/03/10 09:48</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">20200310909112-001-001-001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">원희경</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">16185085</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">NEW 아쿠아픽 구강세정기 AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">001</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">AQ-300</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">일반</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">원희경</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1042-7723</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">0507-1042-7723</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">411450</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">경기 고양시 일산서구 덕이동 현대아이파크 504-1702</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">201306-915231</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String">D가전(정찬희)</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">0</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">106000</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">64564</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">71020</Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s70"><Data ss:Type="String"></Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">93400</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">84909</Data></Cell>
+    <Cell ss:StyleID="s72"><Data ss:Type="String">8491</Data></Cell>
+   </Row>
+   <Row ss:Index="12" ss:AutoFitHeight="0">
+    <Cell ss:Index="41" ss:StyleID="s74"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="41" ss:StyleID="s62"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="41" ss:StyleID="s74"/>
+    <Cell ss:Index="48" ss:StyleID="s73"/>
+   </Row>
+   <Row ss:Index="17" ss:AutoFitHeight="0">
+    <Cell ss:Index="41" ss:StyleID="s73"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>-3</HorizontalResolution>
+    <VerticalResolution>-3</VerticalResolution>
+   </Print>
+   <Selected/>
+   <LeftColumnVisible>33</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>12</ActiveRow>
+     <ActiveCol>36</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

@@ -1,0 +1,6 @@
+2020-06-03 15:51:58 [[^^]] ERROR [[^^]] Error message():  [[^^]] [] [[^^]] []
+2020-06-03 15:51:58 [[^^]] ERROR [[^^]] execSqlList => Select * from dy_custom_report_item [[^^]] {"path":"/settle/custom_report.php","querystring":null,"postdata":[],"SQLSTATE":[],"CODE":[],"MESSAGE":[]} [[^^]] []
+2020-06-03 15:52:06 [[^^]] ERROR [[^^]] Error message():  [[^^]] [] [[^^]] []
+2020-06-03 15:52:06 [[^^]] ERROR [[^^]] execSqlList => Select * from dy_custom_report_item [[^^]] {"path":"/settle/custom_report.php","querystring":null,"postdata":[],"SQLSTATE":[],"CODE":[],"MESSAGE":[]} [[^^]] []
+2020-06-03 15:52:11 [[^^]] ERROR [[^^]] Error message():  [[^^]] [] [[^^]] []
+2020-06-03 15:52:11 [[^^]] ERROR [[^^]] execSqlList => Select * from dy_custom_report_item [[^^]] {"path":"/settle/custom_report.php","querystring":null,"postdata":[],"SQLSTATE":[],"CODE":[],"MESSAGE":[]} [[^^]] []

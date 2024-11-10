@@ -1,0 +1,903 @@
+/*
+ * 정산통계 - 원장 관련 js
+ */
+var SettleReport = (function() {
+	var root = this;
+
+	var xlsDownIng = false;
+	var xlsDownInterval;
+
+	var init = function () {
+		//공통 모달팝업 세팅
+		$( "#modal_common" ).dialog({
+			width: 600,
+			autoOpen: false,
+			modal: true,
+			classes: {
+				"ui-dialog-titlebar": "blue-theme"
+			},
+			open : function(event, ui) { windowScrollHide() },
+			close : function(event, ui) { windowScrollShow(); $( "#modal_common" ).html(""); },
+		});
+
+		//창 닫기 버튼 바인딩
+		$("body").on("click", ".btn-common-pop-close", function(){
+			PopupCommonPopClose();
+		});
+	};
+
+	var __ReportDate = "";
+
+	var ReportInit = function(){
+
+		//검색 폼 Submit 방지
+		$("#searchForm").on("submit", function(e){
+			e.preventDefault();
+		});
+
+		//Input 텍스트 에서 엔터 시 자동 검색 (class = enterDoSearch)
+		$("input.enterDoSearch").on("keyup", function(e){
+			var keyCode = (event.keyCode ? event.keyCode : event.which);
+			if (keyCode == 13) {
+				event.preventDefault();
+				ReportSearch();
+			}
+		});
+
+		//검색 버튼 클릭 이벤트
+		$("#btn_searchBar").on("click", function(){
+			ReportSearch();
+		});
+
+		$("#btn-bank-pop").on("click", function(){
+			if(__ReportDate == ""){
+				alert("검색을 먼저 실행 해주세요.");
+				return;
+			}
+			Common.newWinPopup("report_bank_pop.php?tran_date="+__ReportDate, 'report_bank_pop', 1100, 700, 'yes');
+		});
+
+		$("#btn-loan-pop").on("click", function(){
+			if(__ReportDate == ""){
+				alert("검색을 먼저 실행 해주세요.");
+				return;
+			}
+			Common.newWinPopup("report_loan_pop.php?tran_date="+__ReportDate, 'report_loan_pop', 750, 550, 'yes');
+		});
+
+
+		//추가등록 버튼
+		$(".btn-report-pop-add").on("click", function(){
+			ReportPopOpen($(this).data("type"), $(this).data("inout"), "add");
+		});
+		$(".btn-report-pop-mod").on("click", function(){
+			ReportPopOpen($(this).data("type"), $(this).data("inout"), "update");
+		});
+
+		//날짜 설정 : 기간 1주일
+		$("#transaction_date").on("change", function(){
+
+			var date_end = $(this).val();
+
+			var date_start = moment(date_end).add(-6, "days").format("YYYY-MM-DD");
+
+			$(".prev_date").text(date_start);
+		});
+
+		//다운로드 버튼
+		$(".btn-xls-down").on("click", function(){
+			ReportXlsDown();
+		});
+
+		//삭제버튼
+		$("body").on("click", ".btn-report-delete", function(){
+			if(!confirm('삭제하시겠습니까?')) return;
+
+			ReportItemDelete($(this));
+		});
+
+		ReportSearch();
+	};
+
+	/**
+	 * 자금일보 검색 실행
+	 * @constructor
+	 */
+	var ReportSearch = function(){
+
+		if($("#period").val() == "month"){
+			__ReportDate = $("#date_year").val() + "-" + Common.LeftPad($("#date_month").val(), 2) + "-01";
+
+		}else {
+			__ReportDate = $("#transaction_date").val();
+		}
+		ReportBankSearch();
+		ReportListSearch();
+	};
+
+	/**
+	 * 자금일보엑셀 다운로드
+	 * @constructor
+	 */
+	var ReportXlsDown = function(){
+		if(xlsDownIng) return;
+
+		xlsDownIng = true;
+
+		var param = $("#searchForm").serialize();
+		showLoader();
+		$("#hidden_ifrm_common_filedownload").attr("src", "report_xls_down.php?"+param);
+
+		clearInterval(xlsDownInterval);
+		xlsDownInterval = setInterval(function(){
+			Common.checkXlsDownWait("XLS_REPORT", function(){
+				SettleReport.ReportXlsDownComplete();
+			});
+		}, 500);
+	};
+
+	var ReportXlsDownComplete = function(){
+		xlsDownIng = false;
+		clearInterval(xlsDownInterval);
+		hideLoader();
+	};
+	
+	/**
+	 * 계좌 데이터 불러오기 실행
+	 * @constructor
+	 */
+	var ReportBankSearch = function(){
+		RepotBankGetData(".bank_domestic", "DOMESTIC");
+		RepotBankGetData(".bank_foreign", "FOREIGN");
+		RepotLoanGetData(".bank_loan");
+	};
+
+	/**
+	 * 계좌 데이터 불러오기
+	 * @param table_class
+	 * @param bank_type
+	 * @constructor
+	 */
+	var RepotBankGetData = function(table_class, bank_type){
+
+		$(table_class + " tbody").empty();
+		tableLoader.on(table_class);
+
+		var p_url = "report_proc_ajax.php";
+		var dataObj = new Object();
+		dataObj.period = $("#period").val();
+		dataObj.mode = "get_bank_data";
+		dataObj.tran_date = __ReportDate;
+		dataObj.bank_type = bank_type;
+		$.ajax({
+			type: 'POST',
+			url: p_url,
+			dataType: "json",
+			data: dataObj
+		}).done(function (response) {
+			if(response)
+			{
+				var total = new Object();
+				total.prev = 0;
+				total.in = 0;
+				total.out= 0;
+				total.sum = 0;
+				$.each(response.data, function(i, o){
+					var bank_name = o.bank_name;
+					var prev = Number(o.prev_sum);
+					var in_amt = Number(o.tran_in);
+					var out_amt = Number(o.tran_out);
+					var sum_amt = Number(o.tran_sum);
+					var today_sum = ((prev * 100) + (sum_amt * 100)) / 100;
+					var memo = o.tran_memo;
+
+					total.prev += prev;
+					total.in += in_amt;
+					total.out += out_amt;
+					total.sum += today_sum;
+
+					var html = "";
+					html =  '<tr>' +
+						'<td class="text_left">'+bank_name+'</td>' +
+						'<td class="text_right ">'+Common.addCommas(prev)+'</td>' +
+						'<td class="text_right ">'+Common.addCommas(in_amt)+'</td>' +
+						'<td class="text_right ">'+Common.addCommas(out_amt)+'</td>' +
+						'<td class="text_right ">'+Common.addCommas(today_sum)+'</td>' +
+						'<td class="text_left ">'+memo+'</td>' +
+						'</tr>';
+
+					$(table_class + " tbody").append(html);
+
+				});
+
+				if (bank_type == "FOREIGN") {
+					total.prev = parseFloat(total.prev).toFixed(2);
+					total.in = parseFloat(total.in).toFixed(2);
+					total.out = parseFloat(total.out).toFixed(2);
+					total.sum = parseFloat(total.sum).toFixed(2);
+				}
+
+				var html = "";
+				html =  '<tr>' +
+					'<th>합계</th>' +
+					'<th class="text_right">'+Common.addCommas(total.prev)+'</th>' +
+					'<th class="text_right BANK_SUM_IN" data-bank_type="'+bank_type+'" data-amt="'+total.in+'">'+Common.addCommas(total.in)+'</th>' +
+					'<th class="text_right BANK_SUM_OUT" data-bank_type="'+bank_type+'" data-amt="'+total.out+'">'+Common.addCommas(total.out)+'</th>' +
+					'<th class="text_right">'+Common.addCommas(total.sum)+'</th>' +
+					'<th class="text_right"></th>' +
+					'</tr>';
+
+				$(table_class + " tbody").append(html);
+
+				if(bank_type == "DOMESTIC"){
+					html = '';
+					html =  '<tr>' +
+						'<th>&nbsp;</th>' +
+						'<th>&nbsp;</th>' +
+						'<th class="COMPARE_RESULT_IN"></th>' +
+						'<th class="COMPARE_RESULT_OUT"></th>' +
+						'<th>&nbsp;</th>' +
+						'<th>&nbsp;</th>' +
+						'</tr>';
+
+					$(table_class + " tbody").append(html);
+
+					ReportAmountCompare();
+				}
+
+			}else{
+				alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			}
+			tableLoader.off(table_class);
+		}).fail(function(jqXHR, textStatus){
+			alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			tableLoader.off(table_class);
+		});
+
+	};
+
+
+	/**
+	 * 대출계좌 데이터 불러오기
+	 * @param table_class
+	 * @param bank_type
+	 * @constructor
+	 */
+	var RepotLoanGetData = function(table_class){
+
+		$(table_class + " tbody").empty();
+		tableLoader.on(table_class);
+
+		var p_url = "report_proc_ajax.php";
+		var dataObj = new Object();
+		dataObj.period = $("#period").val();
+		dataObj.mode = "get_loan_data";
+		dataObj.tran_date = __ReportDate;
+		$.ajax({
+			type: 'POST',
+			url: p_url,
+			dataType: "json",
+			data: dataObj
+		}).done(function (response) {
+			if(response)
+			{
+				var total = new Object();
+				total.loan_amount = 0;
+				total.yesterday_remain = 0;
+				total.today_remain = 0;
+				total.loan_amount = 0;
+				total.prev = 0;
+				total.in = 0;
+				total.out= 0;
+				total.sum = 0;
+				$.each(response.data, function(i, o){
+					var loan_name = o.loan_name;
+					var loan_amount = Number(o.loan_amount);
+					var loan_detail = o.loan_detail;
+					var prev = Number(o.prev_sum);
+					var in_amt = Number(o.tran_in);
+					var out_amt = Number(o.tran_out);
+					var sum_amt = Number(o.tran_sum);
+					var today_sum = ((prev * 100) + (sum_amt * 100)) / 100;
+					var memo = o.tran_memo;
+
+					var yesterday_remain = Number(loan_amount - prev);
+					var today_remain = Number(loan_amount - today_sum);
+
+					total.loan_amount += loan_amount;
+					total.yesterday_remain += yesterday_remain;
+					total.today_remain += today_remain;
+					total.prev += prev;
+					total.in += in_amt;
+					total.out += out_amt;
+					total.sum += today_sum;
+
+					var html = "";
+					html =  '<tr>' +
+						'<td class="text_left">'+loan_name+'</td>' +
+						'<td class="text_right ">'+Common.addCommas(loan_amount)+'</td>' +
+						'<td class="text_right ">'+Common.addCommas(yesterday_remain)+'</td>' +
+						'<td class="text_right ">'+Common.addCommas(in_amt)+'</td>' +
+						'<td class="text_right ">'+Common.addCommas(today_remain)+'</td>' +
+						'<td class="text_left ">'+memo+'</td>' +
+						'<td class="text_left ">'+loan_detail+'</td>' +
+						'</tr>';
+
+					$(table_class + " tbody").append(html);
+
+				});
+
+				var html = "";
+				html =  '<tr>' +
+					'<th>합계</th>' +
+					'<th class="text_right">'+Common.addCommas(total.loan_amount)+'</th>' +
+					'<th class="text_right">'+Common.addCommas(total.yesterday_remain)+'</th>' +
+					'<th class="text_right">'+Common.addCommas(total.in)+'</th>' +
+					'<th class="text_right">'+Common.addCommas(total.today_remain)+'</th>' +
+					'<th class="text_right"></th>' +
+					'<th class="text_right"></th>' +
+					'</tr>';
+
+				$(table_class + " tbody").append(html);
+			}else{
+				alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			}
+			tableLoader.off(table_class);
+		}).fail(function(jqXHR, textStatus){
+			alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			tableLoader.off(table_class);
+		});
+
+	};
+
+	/**
+	 * 자금일보 각 항목 불러오기 실행
+	 * @constructor
+	 */
+	var ReportListSearch = function(){
+		ReportListGetData(".CASH_IN", "CASH_IN", "IN");
+		ReportListGetData(".CASH_OUT", "CASH_OUT", "OUT");
+		ReportListGetData(".CASH_CUSTOMER_IN", "CASH_CUSTOMER_IN", "IN");
+		ReportListGetData(".CASH_CUSTOMER_OUT", "CASH_CUSTOMER_OUT", "OUT");
+		ReportListGetData(".BANK_CUSTOMER_IN", "BANK_CUSTOMER_IN", "IN");
+		ReportListGetData(".BANK_CUSTOMER_OUT", "BANK_CUSTOMER_OUT", "OUT");
+		ReportListGetData(".BANK_ETC_IN", "BANK_ETC_IN", "IN");
+		ReportListGetData(".BANK_ETC_OUT", "BANK_ETC_OUT", "OUT");
+		ReportListGetData(".TRANSFER_IN", "TRANSFER_IN", "IN");
+		ReportListGetData(".TRANSFER_OUT", "TRANSFER_OUT", "OUT");
+		ReportListGetData(".CARD_OUT", "CARD_OUT", "OUT");
+
+		ReportListGetSumData("IN");
+		ReportListGetSumData("OUT");
+	};
+
+	/**
+	 * 자금일보 개별 항목 데이터 불러오기
+	 * @param table_class
+	 * @param tran_type
+	 * @param tran_inout
+	 * @constructor
+	 */
+	var ReportListGetData = function(table_class, tran_type, tran_inout){
+		$(table_class + " tbody").empty();
+		tableLoader.on(table_class);
+
+		var p_url = "report_proc_ajax.php";
+		var dataObj = new Object();
+		dataObj.period = $("#period").val();
+		dataObj.mode = "get_report_data";
+		dataObj.tran_date = __ReportDate;
+		dataObj.tran_type = tran_type;
+		dataObj.tran_inout = tran_inout;
+		$.ajax({
+			type: 'POST',
+			url: p_url,
+			dataType: "json",
+			data: dataObj
+		}).done(function (response) {
+			if(response)
+			{
+				var total = 0;
+				$.each(response.data, function(i, o){
+					var account_name = o.account_name;
+					var tran_memo = o.tran_memo;
+					var tran_amount = Math.abs(Number(o.tran_amount));
+
+					if(tran_type == "BANK_CUSTOMER_IN" || tran_type == "BANK_CUSTOMER_OUT" || tran_type == "CASH_CUSTOMER_IN" || tran_type == "CASH_CUSTOMER_OUT"){
+						var target_name = o.target_name;
+					}
+
+					if(tran_type == "CARD_OUT"){
+						var tran_user = o.tran_user;
+						var tran_card_no = o.tran_card_no;
+						var tran_purpose = o.tran_purpose;
+					}
+
+					total += tran_amount;
+
+					var html = "";
+					html += '<tr>';
+
+					if(tran_type == "CARD_OUT"){
+						html +=	'<td class="text_left">'+tran_user+'</td>';
+						html +=	'<td class="text_left">'+tran_card_no+'</td>';
+						html +=	'<td class="text_left">'+tran_purpose+'</td>';
+					}
+
+					html +=	'<td class="text_left">'+account_name+'</td>';
+					if(tran_type == "BANK_CUSTOMER_IN" || tran_type == "BANK_CUSTOMER_OUT" || tran_type == "CASH_CUSTOMER_IN" || tran_type == "CASH_CUSTOMER_OUT"){
+						html += '<td class="text_left">'+target_name+'</td>';
+					}
+					html += '<td class="text_right ">'+Common.addCommas(tran_amount)+'</td>';
+                    html += '<td class="text_left">'+tran_memo+'</td>';
+					if($("#period").val() == "day") {
+						if (tran_type == "TRANSFER_IN" || tran_type == "TRANSFER_OUT") {
+							html += '<td class="text_center"><a href="javascript:;" class="xsmall_btn btn-report-pop-mod-single" data-idx="' + o.tran_idx + '" data-class="' + table_class + '" data-type="' + tran_type + '" data-inout="' + tran_inout + '">수정</a></td>';
+						}
+						html += '<td class="text_center"><a href="javascript:;" class="xsmall_btn btn-report-delete" data-idx="' + o.tran_idx + '" data-class="' + table_class + '" data-type="' + tran_type + '" data-inout="' + tran_inout + '">삭제</a></td>';
+					}
+					html += '</tr>';
+
+					$(table_class + " tbody").append(html);
+
+				});
+
+				var html = "";
+
+				var total_colpan = 1;
+				if(tran_type == "BANK_CUSTOMER_IN" || tran_type == "BANK_CUSTOMER_OUT" || tran_type == "CASH_CUSTOMER_IN" || tran_type == "CASH_CUSTOMER_OUT") {
+					total_colpan = 2;
+				}else if(tran_type == "CARD_OUT"){
+					total_colpan = 3;
+				}
+
+				html +=  '<tr>';
+				html +=  '<th colspan="'+total_colpan+'">합계</th>';
+				if(tran_type == "CARD_OUT") {
+					html += '<th class=""></th>';
+				}
+				html +=  '<th class="text_right '+tran_type+'_SUM" data-amt="'+total+'">'+Common.addCommas(total)+'</th>';
+				if($("#period").val() == "day") {
+					html += '<th></th>';
+					if(tran_type == "TRANSFER_IN" || tran_type == "TRANSFER_OUT") {
+						html += '<th></th>';
+					}
+				}
+				html +=  '<th></th></tr>';
+
+				$(table_class + " tbody").append(html);
+
+
+				//월합계 년합계
+				if(tran_type == "CARD_OUT") {
+
+					var expand_data = response.expand_data;
+
+
+					html = '';
+					html += '<tr>';
+					html += '<th colspan="3">월합계</th>';
+					html += '<th class="">'+expand_data.month.text+'</th>';
+					html += '<th class="text_right">'+Common.addCommas(expand_data.month.sum)+'</th>';
+					if($("#period").val() == "day") {
+						html += '<th></th>';
+					}
+					html += '<th></th></tr>';
+
+					$(table_class + " tbody").append(html);
+
+					html = '';
+					html += '<tr>';
+					html += '<th colspan="3">년합계</th>';
+					html += '<th class="">'+expand_data.year.text+'</th>';
+					html += '<th class="text_right">'+Common.addCommas(expand_data.year.sum)+'</th>';
+					if($("#period").val() == "day") {
+						html += '<th></th>';
+					}
+					html += '<th></th></tr>';
+
+					$(table_class + " tbody").append(html);
+				}
+
+				$(".btn-report-pop-mod-single").off("click");
+				$(".btn-report-pop-mod-single").on("click", function(){
+					ReportPopOpen($(this).data("type"), $(this).data("inout"), "update", $(this).data("idx"));
+				});
+
+			}else{
+				alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			}
+			tableLoader.off(table_class);
+		}).fail(function(jqXHR, textStatus){
+			alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			tableLoader.off(table_class);
+		});
+	};
+
+	var ReportItemDelete = function($obj){
+		var tran_idx = $obj.data("idx");
+		var tran_type = $obj.data("type");
+		var tran_inout = $obj.data("inout");
+		var table_class = $obj.data("class");
+
+		showLoader();
+
+		var p_url = "report_proc_ajax.php";
+		var dataObj = new Object();
+		dataObj.period = $("#period").val();
+		dataObj.mode = "delete_report_data";
+		dataObj.tran_idx = tran_idx;
+		$.ajax({
+			type: 'POST',
+			url: p_url,
+			dataType: "json",
+			data: dataObj
+		}).done(function (response) {
+
+			if(response.result){
+				ReportListGetData(table_class, tran_type, tran_inout);
+				ReportListGetSumData(tran_inout);
+
+				if (response["synchronized"]) {
+					var tran_inout_origin = "IN";
+					var tran_inout_reverse = "OUT";
+					if (tran_inout == "OUT") {
+						tran_inout_origin = "OUT";
+						tran_inout_reverse = "IN";
+					}
+
+					table_class = table_class.replace(tran_inout_origin, tran_inout_reverse);
+					tran_type = tran_type.replace(tran_inout_origin, tran_inout_reverse);
+					tran_inout = tran_inout.replace(tran_inout_origin, tran_inout_reverse);
+
+					ReportListGetData(table_class, tran_type, tran_inout);
+					ReportListGetSumData(tran_inout);
+				}
+			}
+
+			hideLoader();
+		}).fail(function(jqXHR, textStatus){
+			alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			hideLoader();
+		});
+	};
+
+	/**
+	 * 계정과목별 집계 데이터 구하기
+	 * @param tran_inout
+	 * @constructor
+	 */
+	var ReportListGetSumData = function(tran_inout){
+		var table_class = ".ACCOUNT_"+tran_inout;
+
+		$(table_class + " tbody").empty();
+		tableLoader.on(table_class);
+
+		var p_url = "report_proc_ajax.php";
+		var dataObj = new Object();
+		dataObj.period = $("#period").val();
+		dataObj.mode = "get_report_account_data";
+		dataObj.tran_date = __ReportDate;
+		dataObj.tran_inout = tran_inout;
+		$.ajax({
+			type: 'POST',
+			url: p_url,
+			dataType: "json",
+			data: dataObj
+		}).done(function (response) {
+			if(response)
+			{
+				var total = 0;
+				$.each(response.data, function(i, o){
+					var account_name = o.account_name;
+					var tran_amount = Number(o.tran_amount);
+
+					total += tran_amount;
+
+					var html = "";
+					html += '<tr>';
+					html +=	'<td class="text_left">'+account_name+'</td>';
+					html += '<td class="text_right ">'+Common.addCommas(tran_amount)+'</td>';
+					html += '</tr>';
+
+					$(table_class + " tbody").append(html);
+
+				});
+
+				var html = "";
+
+				var total_colpan = 1;
+
+
+				compare_total = 0;
+				if(tran_inout == 'OUT'){
+					compare_total = response.cash_sum;
+				}else{
+					compare_total = total
+				}
+
+				html +=  '<tr>';
+				html +=  '<th colspan="'+total_colpan+'">합계</th>';
+				html +=  '<th class="text_right ACCOUNT_SUM_'+tran_inout+'" data-amt="'+compare_total+'">'+Common.addCommas(total)+'</th>';
+				html +=  '</tr>';
+
+				$(table_class + " tbody").append(html);
+
+				//합계 맞추기
+
+				html = '';
+				html +=  '<tr>';
+				html +=  '<th colspan="'+total_colpan+'">&nbsp;</th>';
+				html +=  '<th class="COMPARE_RESULT_'+tran_inout+'"></th>';
+				html +=  '</tr>';
+				$(table_class + " tbody").append(html);
+
+				ReportAmountCompare();
+
+
+			}else{
+				alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			}
+			tableLoader.off(table_class);
+		}).fail(function(jqXHR, textStatus){
+			alert('오류가 발생하였습니다. 잠시 후 다시 시도하여 주세요.');
+			tableLoader.off(table_class);
+		});
+	};
+
+	/**
+	 * 수입, 지출 합계 비교
+	 * @constructor
+	 */
+	var ReportAmountCompare = function(){
+
+		//입금액 비교
+		var acc_in_amt = $(".ACCOUNT_SUM_IN").data("amt");
+		var bank_in_amt = $(".BANK_SUM_IN[data-bank_type='DOMESTIC']").data("amt");
+
+		acc_in_amt = Number(acc_in_amt);
+		bank_in_amt = Number(bank_in_amt);
+
+		if(isNaN(acc_in_amt) || isNaN(bank_in_amt)) return;
+
+		if(acc_in_amt == bank_in_amt){
+			$(".COMPARE_RESULT_IN").text("OK");
+		}else{
+			$(".COMPARE_RESULT_IN").text("X");
+		}
+
+		//출금액 비교
+		var acc_out_amt = $(".ACCOUNT_SUM_OUT").data("amt");
+		var bank_out_amt = $(".BANK_SUM_OUT[data-bank_type='DOMESTIC']").data("amt");
+		var card_out_amt = $(".CARD_OUT_SUM").data("amt");
+
+		acc_out_amt = Number(acc_out_amt);
+		bank_out_amt = Number(bank_out_amt);
+		card_out_amt = Number(card_out_amt);
+
+		if(isNaN(acc_out_amt) || isNaN(bank_out_amt) ||isNaN(card_out_amt)) return;
+
+		if(acc_out_amt == (bank_out_amt + card_out_amt)){
+			$(".COMPARE_RESULT_OUT").text("OK");
+		}else{
+			$(".COMPARE_RESULT_OUT").text("X");
+		}
+
+	};
+
+	/**
+	 * 계좌 입출금 등록 팝업 페이지 초기화
+	 * @constructor
+	 */
+	var ReportBankPopInit = function(){
+		$(".money").inputmask("numeric", {radixPoint: '.', groupSeparator: ',', digits: 2, autoGroup: true, rightAlign: true});
+
+		$("#btn-save-pop").on("click", function(){
+			$("#dyFormPop").submit();
+		});
+
+		$("#dyFormPop").on("submit", function(e){
+			if(!confirm('저장 하시겠습니까?')){
+				return false;
+			}
+		});
+
+		$(".money").on("focus", function(){
+			if($(this).val() == 0) {
+				$(this).val("");
+			}
+		});
+
+		//합계 자동계산
+		$('input.money').on('keyup',function() {
+			var cnt = $("input[name='bank_idx[]']").length;
+			// console.log(cnt);
+			var sum_tran_in = 0;
+			var sum_tran_out = 0;
+			for (var i = 0; i < cnt; i++) {
+				sum_tran_in = sum_tran_in + parseInt($("input[name='tran_in[]']").eq(i).val().replace(/,/g,"") || 0);
+				sum_tran_out = sum_tran_out + parseInt($("input[name='tran_out[]']").eq(i).val().replace(/,/g,"") || 0);
+			}
+			$("[name='sum_tran_in[]']").val(sum_tran_in);
+			$("[name='sum_tran_out[]']").val(sum_tran_out);
+		});
+	};
+
+	/**
+	 * 대출계좌 입출금 등록 팝업 페이지 초기화
+	 * @constructor
+	 */
+	var ReportLoanPopInit = function(){
+		$(".money").inputmask("numeric", {radixPoint: '.', groupSeparator: ',', digits: 2, autoGroup: true, rightAlign: true});
+
+		$("#btn-save-pop").on("click", function(){
+			$("#dyFormPop").submit();
+		});
+
+		$("#dyFormPop").on("submit", function(e){
+			if(!confirm('저장 하시겠습니까?')){
+				return false;
+			}
+		});
+
+		$(".money").on("focus", function(){
+			if($(this).val() == 0) {
+				$(this).val("");
+			}
+		});
+	};
+
+	/**
+	 * 자금일보 항목 입력 팝업 오픈
+	 * @param tran_type
+	 * @param tran_inout
+	 * @param mode
+	 * @constructor
+	 */
+	var ReportPopOpen = function(tran_type, tran_inout, mode, tran_idx){
+		if (tran_idx === undefined) tran_idx = 0;
+
+		var wW = 700;
+		if(tran_type == "BANK_CUSTOMER_IN" || tran_type == "BANK_CUSTOMER_OUT" || tran_type == "CASH_CUSTOMER_IN" || tran_type == "CASH_CUSTOMER_OUT") wW = 1100;
+		if(tran_type == "CARD_OUT") wW = 1220;
+
+		var url = "report_pop.php?mode="+mode+"&tran_date="+__ReportDate+"&tran_type="+tran_type+"&tran_inout="+tran_inout;
+
+		if (tran_idx) {
+			url += "&tran_idx=" + tran_idx;
+		}
+
+		Common.newWinPopup(url, 'report_pop', wW, 600, 'yes');
+	};
+
+	/**
+	 * 자금일보 항목 입력 팝업 페이지 초기화
+	 * @constructor
+	 */
+	var ReportPopInit = function(){
+		$(".money").inputmask("numeric", {radixPoint: '.', groupSeparator: ',', digits: 0, autoGroup: true, rightAlign: true});
+
+		$(".sel-account-idx").SumoSelect({
+			placeholder: '계정과목을 선택해주세요.',
+			captionFormat : '{0}개 선택됨',
+			captionFormatAllSelected : '{0}개 모두 선택됨',
+			search: true,
+			searchText: '계정과목 검색',
+			noMatch : '검색결과가 없습니다.',
+			height: 100
+		});
+
+		$(".sel-seller-target-idx").SumoSelect({
+			placeholder: '판매처를 선택해주세요.',
+			captionFormat : '{0}개 선택됨',
+			captionFormatAllSelected : '{0}개 모두 선택됨',
+			search: true,
+			searchText: '거래처 검색',
+			noMatch : '검색결과가 없습니다.',
+			height: 100
+		});
+
+		$(".sel-supplier-target-idx").SumoSelect({
+			placeholder: '공급처를 선택해주세요.',
+			captionFormat : '{0}개 선택됨',
+			captionFormatAllSelected : '{0}개 모두 선택됨',
+			search: true,
+			searchText: '거래처 검색',
+			noMatch : '검색결과가 없습니다.',
+			height: 100
+		});
+
+		$("#btn-save-pop").on("click", function(){
+			$("#dyFormPop").submit();
+		});
+
+		$("#dyFormPop").on("submit", function(e){
+			if(!confirm('저장 하시겠습니까?')){
+				return false;
+			}
+		});
+
+		$(".btn-account-sync").on("click", function(){
+			var val = $(".sel-account-idx").eq(0).val();
+
+			$(".sel-account-idx").val(val);
+
+			$(".sel-account-idx").each(function(i, o){
+				$(".sel-account-idx")[i].sumo.reload();
+			});
+		});
+	};
+
+
+
+
+	/***
+	 * 테이블 로더
+	 * @type {{off: off, on: on}}
+	 */
+	var tableLoader = {
+		on : function(sel){
+			//var loader = '<div class="table-loading-wrap"><div class="table-loading"><div></div><div></div><div></div></div></div>';
+			var loader = '<div class="table-loading-wrap"><div class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div></div>';
+			$(sel).after(loader);
+		},
+		off : function(sel){
+			$(sel).siblings(".table-loading-wrap").remove();
+		}
+	};
+
+	/**
+	 * 팝업 페이지 - 공통 모달 팝업 Open
+	 * @param width
+	 * @param height
+	 * @param title
+	 * @param html
+	 * @constructor
+	 */
+	var PopupCommonPopOpen = function(width, height, title, html){
+		var _width = (width === 0) ? 600 : width;
+		var _height = (height === 0) ? "" : height;
+
+		$("#modal_common").dialog( "option", "width", width);
+		if(_height != "") {
+			$("#modal_common").dialog("option", "height", height);
+		}
+		$("#modal_common").dialog("option", "title", title);
+		$("#modal_common").html(html);
+		$("#modal_common").dialog( "open" );
+	};
+
+	/**
+	 * 팝업 페이지 - 공통 모달 팝업 Close
+	 * @constructor
+	 */
+	var PopupCommonPopClose = function() {
+		$("#modal_common").html("");
+		$("#modal_common").dialog( "close" );
+	};
+
+	return {
+		init: init,
+		ReportInit: ReportInit,
+		ReportLoanPopInit: ReportLoanPopInit,
+		ReportBankPopInit: ReportBankPopInit,
+		ReportBankReload : function(){
+			ReportBankSearch();
+			ReportListGetSumData("IN");
+			ReportListGetSumData("OUT");
+		},
+		ReportLoanReload : function(){
+			RepotLoanGetData();
+		},
+		ReportPopInit: ReportPopInit,
+		ReportListReload: function(tran_type, tran_inout){
+			ReportListGetData("."+tran_type, tran_type, tran_inout);
+			ReportListGetSumData(tran_inout);
+		},
+		ReportXlsDownComplete: ReportXlsDownComplete,
+
+	}
+})();
+$(function(){
+	SettleReport.init();
+});

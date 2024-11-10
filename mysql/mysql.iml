@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/cache/adapter-common" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/cache/apcu-adapter" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/cache/hierarchical-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/cache/redis-adapter" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/cache/simple-cache-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/cache/tag-interop" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/markbaker/complex" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/phpmailer/phpmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/phpoffice/phpspreadsheet" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/www/vendor/psr/simple-cache" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

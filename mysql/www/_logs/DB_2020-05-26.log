@@ -1,0 +1,6 @@
+2020-05-26 13:31:17 [[^^]] ERROR [[^^]] Error message(0):  [[^^]] [] [[^^]] []
+2020-05-26 13:31:17 [[^^]] ERROR [[^^]] execSqlOneRow =>  [[^^]] {"path":"/stock/insert_test.php","querystring":null,"postdata":[],"SQLSTATE":[],"CODE":[],"MESSAGE":[]} [[^^]] []
+2020-05-26 13:34:20 [[^^]] ERROR [[^^]] Error message(0):  [[^^]] [] [[^^]] []
+2020-05-26 13:34:20 [[^^]] ERROR [[^^]] execSqlOneRow =>  [[^^]] {"path":"/stock/insert_test.php","querystring":null,"postdata":[],"SQLSTATE":[],"CODE":[],"MESSAGE":[]} [[^^]] []
+2020-05-26 13:35:55 [[^^]] ERROR [[^^]] Error message(0):  [[^^]] [] [[^^]] []
+2020-05-26 13:35:58 [[^^]] ERROR [[^^]] execSqlOneRow =>  [[^^]] {"path":"/stock/insert_test.php","querystring":null,"postdata":[],"SQLSTATE":[],"CODE":[],"MESSAGE":[]} [[^^]] []

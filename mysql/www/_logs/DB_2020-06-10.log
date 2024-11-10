@@ -1,0 +1,4 @@
+2020-06-10 15:04:26 [[^^]] ERROR [[^^]] Error message(1525): Incorrect DATE value: '' [[^^]] [] [[^^]] []
+2020-06-10 15:04:26 [[^^]] ERROR [[^^]] execSqlList => SELECT 	DY_MEMBER_SUPPLIER.supplier_name as '공급처명' 	, DY_SETTLE.settle_purchase_supply as '매입가' FROM DY_SETTLE 	JOIN DY_MEMBER_SUPPLIER ON DY_SETTLE.supplier_idx = DY_MEMBER_SUPPLIER.member_idx WHERE 	DY_SETTLE.settle_date >= '2020-04-13' 	AND DY_SETTLE.settle_date <= '2020-04-13' 	AND DY_SETTLE.settle_date >= '' GROUP BY DY_SETTLE.supplier_idx ORDER BY DY_SETTLE.supplier_idx [[^^]] {"path":"/settle/test.php","querystring":null,"postdata":{"18":"","1":"","16":""},"SQLSTATE":[],"CODE":[],"MESSAGE":[]} [[^^]] []
+2020-06-10 15:11:51 [[^^]] ERROR [[^^]] Error message(0):  [[^^]] [] [[^^]] []
+2020-06-10 15:11:51 [[^^]] ERROR [[^^]] execSqlList =>  [[^^]] {"path":"/settle/test.php","querystring":null,"postdata":[],"SQLSTATE":[],"CODE":[],"MESSAGE":[]} [[^^]] []

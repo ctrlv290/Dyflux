@@ -1,0 +1,189 @@
+<?php
+/**
+ * User: woox
+ * Date: 2018-11-01
+ * Desc: 상품정보제공고시 관련 Process
+ */
+//Page Info
+$pageMenuIdx = 170;
+//Permission IDX
+$pagePermissionIdx = 60;
+//Init
+include "../_init_.php";
+
+$C_ProductNotice = new ProductNotice();
+
+$mode                        = $_POST["mode"];
+$product_notice_idx        = $_POST["product_notice_idx"];
+$product_notice_title        = $_POST["product_notice_title"];
+$args["product_notice_1_use"]     = ($_POST["product_notice_1_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_1_title"]   = $_POST["product_notice_1_title"];	
+$args["product_notice_2_use"]     = ($_POST["product_notice_2_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_2_title"]   = $_POST["product_notice_2_title"];	
+$args["product_notice_3_use"]     = ($_POST["product_notice_3_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_3_title"]   = $_POST["product_notice_3_title"];	
+$args["product_notice_4_use"]     = ($_POST["product_notice_4_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_4_title"]   = $_POST["product_notice_4_title"];	
+$args["product_notice_5_use"]     = ($_POST["product_notice_5_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_5_title"]   = $_POST["product_notice_5_title"];	
+$args["product_notice_6_use"]     = ($_POST["product_notice_6_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_6_title"]   = $_POST["product_notice_6_title"];	
+$args["product_notice_7_use"]     = ($_POST["product_notice_7_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_7_title"]   = $_POST["product_notice_7_title"];	
+$args["product_notice_8_use"]     = ($_POST["product_notice_8_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_8_title"]   = $_POST["product_notice_8_title"];	
+$args["product_notice_9_use"]     = ($_POST["product_notice_9_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_9_title"]   = $_POST["product_notice_9_title"];	
+$args["product_notice_10_use"]    = ($_POST["product_notice_10_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_10_title"]  = $_POST["product_notice_10_title"];	
+$args["product_notice_11_use"]    = ($_POST["product_notice_11_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_11_title"]  = $_POST["product_notice_11_title"];	
+$args["product_notice_12_use"]    = ($_POST["product_notice_12_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_12_title"]  = $_POST["product_notice_12_title"];	
+$args["product_notice_13_use"]    = ($_POST["product_notice_13_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_13_title"]  = $_POST["product_notice_13_title"];	
+$args["product_notice_14_use"]    = ($_POST["product_notice_14_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_14_title"]  = $_POST["product_notice_14_title"];	
+$args["product_notice_15_use"]    = ($_POST["product_notice_15_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_15_title"]  = $_POST["product_notice_15_title"];	
+$args["product_notice_16_use"]    = ($_POST["product_notice_16_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_16_title"]  = $_POST["product_notice_16_title"];	
+$args["product_notice_17_use"]    = ($_POST["product_notice_17_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_17_title"]  = $_POST["product_notice_17_title"];	
+$args["product_notice_18_use"]    = ($_POST["product_notice_18_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_18_title"]  = $_POST["product_notice_18_title"];	
+$args["product_notice_19_use"]    = ($_POST["product_notice_19_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_19_title"]  = $_POST["product_notice_19_title"];	
+$args["product_notice_20_use"]    = ($_POST["product_notice_20_use"] == "Y") ? "Y" : "N";	
+$args["product_notice_20_title"]  = $_POST["product_notice_20_title"];	
+
+if($mode == "add")
+{
+	$args = array();
+	$args["product_notice_idx"]        = $_POST["product_notice_idx"];
+	$args["product_notice_title"]      = $_POST["product_notice_title"];
+	$args["product_notice_1_use"]      = $_POST["product_notice_1_use"];
+	$args["product_notice_1_title"]    = $_POST["product_notice_1_title"];
+	$args["product_notice_2_use"]      = $_POST["product_notice_2_use"];
+	$args["product_notice_2_title"]    = $_POST["product_notice_2_title"];
+	$args["product_notice_3_use"]      = $_POST["product_notice_3_use"];
+	$args["product_notice_3_title"]    = $_POST["product_notice_3_title"];
+	$args["product_notice_4_use"]      = $_POST["product_notice_4_use"];
+	$args["product_notice_4_title"]    = $_POST["product_notice_4_title"];
+	$args["product_notice_5_use"]      = $_POST["product_notice_5_use"];
+	$args["product_notice_5_title"]    = $_POST["product_notice_5_title"];
+	$args["product_notice_6_use"]      = $_POST["product_notice_6_use"];
+	$args["product_notice_6_title"]    = $_POST["product_notice_6_title"];
+	$args["product_notice_7_use"]      = $_POST["product_notice_7_use"];
+	$args["product_notice_7_title"]    = $_POST["product_notice_7_title"];
+	$args["product_notice_8_use"]      = $_POST["product_notice_8_use"];
+	$args["product_notice_8_title"]    = $_POST["product_notice_8_title"];
+	$args["product_notice_9_use"]      = $_POST["product_notice_9_use"];
+	$args["product_notice_9_title"]    = $_POST["product_notice_9_title"];
+	$args["product_notice_10_use"]     = $_POST["product_notice_10_use"];
+	$args["product_notice_10_title"]   = $_POST["product_notice_10_title"];
+	$args["product_notice_11_use"]     = $_POST["product_notice_11_use"];
+	$args["product_notice_11_title"]   = $_POST["product_notice_11_title"];
+	$args["product_notice_12_use"]     = $_POST["product_notice_12_use"];
+	$args["product_notice_12_title"]   = $_POST["product_notice_12_title"];
+	$args["product_notice_13_use"]     = $_POST["product_notice_13_use"];
+	$args["product_notice_13_title"]   = $_POST["product_notice_13_title"];
+	$args["product_notice_14_use"]     = $_POST["product_notice_14_use"];
+	$args["product_notice_14_title"]   = $_POST["product_notice_14_title"];
+	$args["product_notice_15_use"]     = $_POST["product_notice_15_use"];
+	$args["product_notice_15_title"]   = $_POST["product_notice_15_title"];
+	$args["product_notice_16_use"]     = $_POST["product_notice_16_use"];
+	$args["product_notice_16_title"]   = $_POST["product_notice_16_title"];
+	$args["product_notice_17_use"]     = $_POST["product_notice_17_use"];
+	$args["product_notice_17_title"]   = $_POST["product_notice_17_title"];
+	$args["product_notice_18_use"]     = $_POST["product_notice_18_use"];
+	$args["product_notice_18_title"]   = $_POST["product_notice_18_title"];
+	$args["product_notice_19_use"]     = $_POST["product_notice_19_use"];
+	$args["product_notice_19_title"]   = $_POST["product_notice_19_title"];
+	$args["product_notice_20_use"]     = $_POST["product_notice_20_use"];
+	$args["product_notice_20_title"]   = $_POST["product_notice_20_title"];
+
+	$rst = $C_ProductNotice -> insertProductNotice($args);
+
+	$exec_script = "
+		opener.ProductNotice.ProductNoticeListReload();
+	";
+
+	exec_script($exec_script);
+
+
+}elseif($mode == "mod"){
+
+	$args = array();
+	$args["product_notice_idx"]        = $_POST["product_notice_idx"];
+	$args["product_notice_title"]      = $_POST["product_notice_title"];
+	$args["product_notice_1_use"]      = $_POST["product_notice_1_use"];
+	$args["product_notice_1_title"]    = $_POST["product_notice_1_title"];
+	$args["product_notice_2_use"]      = $_POST["product_notice_2_use"];
+	$args["product_notice_2_title"]    = $_POST["product_notice_2_title"];
+	$args["product_notice_3_use"]      = $_POST["product_notice_3_use"];
+	$args["product_notice_3_title"]    = $_POST["product_notice_3_title"];
+	$args["product_notice_4_use"]      = $_POST["product_notice_4_use"];
+	$args["product_notice_4_title"]    = $_POST["product_notice_4_title"];
+	$args["product_notice_5_use"]      = $_POST["product_notice_5_use"];
+	$args["product_notice_5_title"]    = $_POST["product_notice_5_title"];
+	$args["product_notice_6_use"]      = $_POST["product_notice_6_use"];
+	$args["product_notice_6_title"]    = $_POST["product_notice_6_title"];
+	$args["product_notice_7_use"]      = $_POST["product_notice_7_use"];
+	$args["product_notice_7_title"]    = $_POST["product_notice_7_title"];
+	$args["product_notice_8_use"]      = $_POST["product_notice_8_use"];
+	$args["product_notice_8_title"]    = $_POST["product_notice_8_title"];
+	$args["product_notice_9_use"]      = $_POST["product_notice_9_use"];
+	$args["product_notice_9_title"]    = $_POST["product_notice_9_title"];
+	$args["product_notice_10_use"]     = $_POST["product_notice_10_use"];
+	$args["product_notice_10_title"]   = $_POST["product_notice_10_title"];
+	$args["product_notice_11_use"]     = $_POST["product_notice_11_use"];
+	$args["product_notice_11_title"]   = $_POST["product_notice_11_title"];
+	$args["product_notice_12_use"]     = $_POST["product_notice_12_use"];
+	$args["product_notice_12_title"]   = $_POST["product_notice_12_title"];
+	$args["product_notice_13_use"]     = $_POST["product_notice_13_use"];
+	$args["product_notice_13_title"]   = $_POST["product_notice_13_title"];
+	$args["product_notice_14_use"]     = $_POST["product_notice_14_use"];
+	$args["product_notice_14_title"]   = $_POST["product_notice_14_title"];
+	$args["product_notice_15_use"]     = $_POST["product_notice_15_use"];
+	$args["product_notice_15_title"]   = $_POST["product_notice_15_title"];
+	$args["product_notice_16_use"]     = $_POST["product_notice_16_use"];
+	$args["product_notice_16_title"]   = $_POST["product_notice_16_title"];
+	$args["product_notice_17_use"]     = $_POST["product_notice_17_use"];
+	$args["product_notice_17_title"]   = $_POST["product_notice_17_title"];
+	$args["product_notice_18_use"]     = $_POST["product_notice_18_use"];
+	$args["product_notice_18_title"]   = $_POST["product_notice_18_title"];
+	$args["product_notice_19_use"]     = $_POST["product_notice_19_use"];
+	$args["product_notice_19_title"]   = $_POST["product_notice_19_title"];
+	$args["product_notice_20_use"]     = $_POST["product_notice_20_use"];
+	$args["product_notice_20_title"]   = $_POST["product_notice_20_title"];
+
+	$rst = $C_ProductNotice -> updateProductNotice($args);
+
+	$exec_script = "
+		opener.ProductNotice.ProductNoticeListReload();
+	";
+
+	exec_script_and_close($exec_script);
+
+}elseif($mode == "get_product_notice_list_for_selectbox"){
+
+	$list = $C_ProductNotice->getProductNoticeTitleList();
+
+	$response = array();
+	$response["result"] = true;
+	$response["list"] = $list;
+
+	echo json_encode($response, true);
+}elseif($mode == "get_product_notice_content"){
+
+	$row = $C_ProductNotice->getProductNoticeData($product_notice_idx);
+
+	$response = array();
+	$response["result"] = true;
+	$response["data"] = $row;
+
+	echo json_encode($response, true);
+}
+
+?>
